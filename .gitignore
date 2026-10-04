@@ -1,0 +1,11 @@
+node_modules/
+dist/
+dist-preview/
+.DS_Store
+*.local
+.env
+admin-portal/.env
+admin-portal/node_modules/
+admin-portal/dist/
+admin-portal/dist-preview/
+.vite/
