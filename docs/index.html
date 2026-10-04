@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232543e6'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="theme-color" content="#2543E6" />
+<meta name="description" content="Visamotion Global Visa Intelligence — immigration & visa consulting." />
+<title>Visamotion — Global Visa Intelligence</title>
+<style>
+  html,body{margin:0;height:100%;background:#fff;font-family:Inter,system-ui,sans-serif}
+  #vm-boot{position:fixed;inset:0;display:grid;place-items:center;background:#fff;color:#0b1220;z-index:9999}
+  #vm-boot .b{text-align:center}
+  #vm-boot .mark{width:56px;height:56px;margin:0 auto 16px;border-radius:16px;background:linear-gradient(135deg,#2543e6,#3b62f6);display:grid;place-items:center;box-shadow:0 12px 30px -10px rgba(37,67,230,.5)}
+  #vm-boot .t{font-weight:800;font-size:18px;letter-spacing:-.02em}
+  #vm-boot .s{color:#64748b;font-size:13px;margin-top:4px}
+  #vm-boot .bar{width:180px;height:6px;border-radius:99px;background:#eef2f7;overflow:hidden;margin:16px auto 0}
+  #vm-boot .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#2543e6,#ffb838);transition:width .2s}
+</style>
+</head>
+<body>
+<div id="vm-boot"><div class="b">
+  <div class="mark"><svg viewBox="0 0 24 24" width="26" height="26" fill="#fff"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.2l7.5 3.75L12 11.7 4.5 7.95 12 4.2z"/></svg></div>
+  <div class="t">Visamotion</div>
+  <div class="s">Loading your app…</div>
+  <div class="bar"><i id="vm-prog"></i></div>
+</div></div>
+
+<script>
+(async function () {
+  const boot = document.getElementById("vm-boot");
+  const prog = document.getElementById("vm-prog");
+  const TOTAL = 3;
+  try {
+    let b64 = "";
+    for (let i = 0; i < TOTAL; i++) {
+      const url = new URL("parts/part" + String(i).padStart(3, "0") + ".txt", document.baseURI);
+      const res = await fetch(url);
+      if (!res.ok) throw new Error("part " + i + " HTTP " + res.status);
+      b64 += (await res.text()).trim();
+      prog.style.width = Math.round(((i + 1) / TOTAL) * 90) + "%";
+    }
+    const bin = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+    const stream = new Blob([bin]).stream().pipeThrough(new DecompressionStream("gzip"));
+    const html = await new Response(stream).text();
+    prog.style.width = "100%";
+    document.open();
+    document.write(html);
+    document.close();
+  } catch (e) {
+    boot.innerHTML = '<div class="b"><div class="t">Could not load the app</div><div class="s">' +
+      String(e).replace(/[<>&]/g, "") + "</div></div>";
+    console.error(e);
+  }
+})();
+</script>
+</body>
+</html>
