@@ -18,6 +18,7 @@
 </style>
 </head>
 <body>
+<div id="root"></div>
 <div id="vm-boot"><div class="b">
   <div class="mark"><svg viewBox="0 0 24 24" width="26" height="26" fill="#fff"><path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.2l7.5 3.75L12 11.7 4.5 7.95 12 4.2z"/></svg></div>
   <div class="t">Visamotion</div>
@@ -36,17 +37,35 @@
       var res = await fetch(url, { cache: "no-cache" });
       if (!res.ok) throw new Error("part " + i + " HTTP " + res.status);
       b64 += (await res.text()).trim();
-      if (prog) prog.style.width = Math.round(((i + 1) / TOTAL) * 90) + "%";
+      if (prog) prog.style.width = Math.round(((i + 1) / TOTAL) * 85) + "%";
     }
     var bin = Uint8Array.from(atob(b64), function (c) { return c.charCodeAt(0); });
     var stream = new Blob([bin]).stream().pipeThrough(new DecompressionStream("gzip"));
     var html = await new Response(stream).text();
-    if (prog) prog.style.width = "100%";
-    document.open();
-    document.write(html);
-    document.close();
+    var doc = new DOMParser().parseFromString(html, "text/html");
+    // inject styles
+    doc.querySelectorAll("style").forEach(function (s) {
+      var st = document.createElement("style");
+      st.textContent = s.textContent;
+      document.head.appendChild(st);
+    });
+    doc.querySelectorAll('link[rel="stylesheet"]').forEach(function (l) {
+      var ln = document.createElement("link");
+      ln.rel = "stylesheet";
+      ln.href = l.getAttribute("href");
+      document.head.appendChild(ln);
+    });
+    // pull out the app module code
+    var mod = doc.querySelector('script[type="module"]');
+    var code = mod ? mod.textContent : "";
+    if (!code) throw new Error("app module not found");
+    if (prog) prog.style.width = "99%";
+    var blob = new Blob([code], { type: "text/javascript" });
+    var blobUrl = URL.createObjectURL(blob);
+    await import(blobUrl);
+    if (boot && boot.parentNode) boot.parentNode.removeChild(boot);
   } catch (e) {
-    boot.innerHTML = '<div class="b"><div class="t">Could not load the app</div><div class="s">' +
+    if (boot) boot.innerHTML = '<div class="b"><div class="t">Could not load the app</div><div class="s">' +
       String(e).replace(/[<>&]/g, "") + "</div></div>";
     console.error(e);
   }
