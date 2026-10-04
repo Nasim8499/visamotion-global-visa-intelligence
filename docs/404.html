@@ -30,10 +30,16 @@
   var boot = document.getElementById("vm-boot");
   var prog = document.getElementById("vm-prog");
   var TOTAL = 3;
+  var BASE = (function () {
+    var p = window.location.pathname;
+    var marker = "/visamotion-global-visa-intelligence";
+    if (p.indexOf(marker) === 0) return marker + "/";
+    return "./";
+  })();
   try {
     var b64 = "";
     for (var i = 0; i < TOTAL; i++) {
-      var url = new URL("parts/part" + String(i).padStart(3, "0") + ".txt", document.baseURI);
+      var url = BASE + "parts/part" + String(i).padStart(3, "0") + ".txt";
       var res = await fetch(url, { cache: "no-cache" });
       if (!res.ok) throw new Error("part " + i + " HTTP " + res.status);
       b64 += (await res.text()).trim();
