@@ -1,6 +1,7 @@
 /* Visamotion service worker — lightweight app-shell cache for PWA / TWA. */
-const CACHE = "visamotion-v1";
-const ASSETS = ["/", "/manifest.webmanifest", "/icons/icon-192.png", "/icons/icon-512.png"];
+const CACHE = "visamotion-v2";
+const BASE = self.location.pathname.replace(/sw\.js$/, "");
+const ASSETS = [BASE, BASE + "manifest.webmanifest", BASE + "icons/icon-192.png", BASE + "icons/icon-512.png"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((c) => c.addAll(ASSETS)).then(() => self.skipWaiting()));
@@ -18,7 +19,7 @@ self.addEventListener("fetch", (event) => {
 
   if (request.mode === "navigate") {
     event.respondWith(
-      fetch(request).catch(() => caches.match("/"))
+      fetch(request).catch(() => caches.match(BASE))
     );
     return;
   }

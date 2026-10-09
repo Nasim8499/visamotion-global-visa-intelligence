@@ -1,9 +1,9 @@
 {
-  "name": "Visamotion Global Visa Intelligence",
+  "name": "Visamotion — Global Visa Intelligence",
   "short_name": "Visamotion",
-  "description": "Immigration & visa consulting — applications, case tracking, document uploads and 8 destination programs.",
-  "start_url": "/",
-  "scope": "/",
+  "description": "Apply for visas, track your case, upload documents and chat with your advisor across 8 destinations.",
+  "start_url": ".",
+  "scope": ".",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#FFFFFF",
@@ -12,13 +12,13 @@
   "categories": ["business", "travel", "productivity"],
   "icons": [
     {
-      "src": "/icons/icon-192.png",
+      "src": "icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icons/icon-512.png",
+      "src": "icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
