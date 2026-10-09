@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none" role="img" aria-label="First Fly International">
+  <defs>
+    <linearGradient id="ffBlue" x1="40" y1="30" x2="200" y2="210" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5AA9F7"/>
+      <stop offset="0.5" stop-color="#1E6FE0"/>
+      <stop offset="1" stop-color="#0B3A9E"/>
+    </linearGradient>
+    <linearGradient id="ffOrange" x1="30" y1="180" x2="210" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F59A1E"/>
+      <stop offset="1" stop-color="#FFB838"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="56" fill="#ffffff"/>
+
+  <!-- globe (behind letters, right side) -->
+  <g transform="translate(168 122)">
+    <circle cx="0" cy="0" r="52" fill="#1E6FE0"/>
+    <ellipse cx="0" cy="0" rx="22" ry="52" fill="none" stroke="#ffffff" stroke-width="4" opacity="0.55"/>
+    <path d="M-52 0h104" stroke="#ffffff" stroke-width="4" opacity="0.55"/>
+    <path d="M-49 -20h98M-49 20h98" stroke="#ffffff" stroke-width="3" opacity="0.4"/>
+    <circle cx="0" cy="0" r="52" fill="none" stroke="#0B3A9E" stroke-width="3" opacity="0.3"/>
+  </g>
+
+  <!-- plane taking off, top-right -->
+  <g transform="translate(182 62) rotate(-22)">
+    <path d="M0 0l58 20-58 20 10-20z" fill="#1E6FE0"/>
+  </g>
+
+  <!-- FF monogram, bold strokes -->
+  <g stroke="url(#ffBlue)" stroke-width="26" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- back F -->
+    <path d="M96 60v136"/>
+    <path d="M96 72h50"/>
+    <path d="M96 130h44"/>
+    <!-- front F -->
+    <path d="M56 60v136"/>
+    <path d="M56 72h44"/>
+    <path d="M56 130h38"/>
+  </g>
+
+  <!-- orange flight swoosh across the base -->
+  <path d="M28 176c40-30 108-44 182-30" stroke="url(#ffOrange)" stroke-width="13" stroke-linecap="round" fill="none"/>
+</svg>

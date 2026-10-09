@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 160" fill="none" role="img" aria-label="First Fly International">
+  <defs>
+    <linearGradient id="lBlue" x1="30" y1="20" x2="180" y2="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5AA9F7"/>
+      <stop offset="0.5" stop-color="#1E6FE0"/>
+      <stop offset="1" stop-color="#0B3A9E"/>
+    </linearGradient>
+    <linearGradient id="lOrange" x1="20" y1="120" x2="180" y2="80" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F59A1E"/>
+      <stop offset="1" stop-color="#FFB838"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(6 6)">
+    <!-- globe -->
+    <g transform="translate(112 82)">
+      <circle cx="0" cy="0" r="34" fill="#1E6FE0"/>
+      <ellipse cx="0" cy="0" rx="14" ry="34" fill="none" stroke="#ffffff" stroke-width="3" opacity="0.55"/>
+      <path d="M-34 0h68" stroke="#ffffff" stroke-width="3" opacity="0.55"/>
+      <path d="M-32 -13h64M-32 13h64" stroke="#ffffff" stroke-width="2" opacity="0.4"/>
+      <circle cx="0" cy="0" r="34" fill="none" stroke="#0B3A9E" stroke-width="2" opacity="0.3"/>
+    </g>
+    <!-- plane -->
+    <g transform="translate(122 30) rotate(-22)">
+      <path d="M0 0l40 14-40 14 7-14z" fill="#1E6FE0"/>
+    </g>
+    <!-- FF -->
+    <g stroke="url(#lBlue)" stroke-width="17" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M64 40v90"/><path d="M64 48h34"/><path d="M64 87h30"/>
+      <path d="M37 40v90"/><path d="M37 48h30"/><path d="M37 87h25"/>
+    </g>
+    <!-- swoosh -->
+    <path d="M14 116c28-20 76-29 128-20" stroke="url(#lOrange)" stroke-width="9" stroke-linecap="round" fill="none"/>
+  </g>
+
+  <!-- wordmark -->
+  <text x="196" y="72" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif" font-size="52" font-weight="800" fill="#0B1220" letter-spacing="-1">First <tspan fill="#F59A1E">Fly</tspan></text>
+  <text x="198" y="106" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif" font-size="17" font-weight="700" fill="#2543E6" letter-spacing="7">INTERNATIONAL</text>
+  <text x="198" y="136" font-family="'Plus Jakarta Sans', 'Segoe UI', system-ui, sans-serif" font-size="15" font-weight="600" fill="#64748b" letter-spacing="1">Your Visa, Our Priority</text>
+</svg>
