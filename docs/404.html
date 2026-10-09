@@ -39,7 +39,7 @@
   try {
     var b64 = "";
     for (var i = 0; i < TOTAL; i++) {
-      var url = BASE + "parts/part" + String(i).padStart(3, "0") + ".txt";
+      var url = BASE + "parts/6d5f5b84bc/part" + String(i).padStart(3, "0") + ".txt";
       var res = await fetch(url, { cache: "no-cache" });
       if (!res.ok) throw new Error("part " + i + " HTTP " + res.status);
       b64 += (await res.text()).trim();
