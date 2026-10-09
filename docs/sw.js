@@ -1,4 +1,4 @@
-/* Visamotion service worker — lightweight app-shell cache for PWA / TWA. */
+/* First Fly International service worker — lightweight app-shell cache for PWA / TWA. */
 const CACHE = "visamotion-v2";
 const BASE = self.location.pathname.replace(/sw\.js$/, "");
 const ASSETS = [BASE, BASE + "manifest.webmanifest", BASE + "icons/icon-192.png", BASE + "icons/icon-512.png"];
